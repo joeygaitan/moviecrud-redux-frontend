@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Home from './components/Home'
 import Movie from './components/Movie'
-import { addTodo } from './actions/index';
+import { Movies } from './actions/Movies';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
