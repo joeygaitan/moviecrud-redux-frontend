@@ -41,11 +41,12 @@ export const getMovie = (id) =>{
     }
 }
 
-export const updateMovie = (id, body) => {
+export const updateMovie = (body, id, fn) => {
     return (dispatch) => {
         axios.put(`http://localhost:3004/movies/${id}`, body)
         .then(res=>{
             dispatch(getMovies())
+            fn()
         })
         .catch((error)=>{
             console.log(error);

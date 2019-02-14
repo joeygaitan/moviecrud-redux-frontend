@@ -7,38 +7,54 @@ import Header from './Header';
 
 
 class Movie extends Component {
+    constructor(props){
+        super(props)
+        
+        this.state = {
+            editClicked: true,
+            movie:{...props.movie}
+        }
+    }
+
     componentDidMount = () => {        
         this.props.getMovie(this.props.match.params.id)
     }
 
-    constructor(props){
-        super(props)
-        console.log(props)
-        this.state = {
-            editingTitle: false,
-            movie:{}
+    static getDerivedStateFromProps = (props, state)=>{
+        if(!state.movie.hasOwnProperty('title')){
+        console.log("I am in here",props);
+
+            return {...state, movie : props.movie}
         }
     }
-    static getDerivedStateFromProps(props, state){
-        return {...state, movie: { ...props.movie, ...state.movie }}
 
+    clicked = (e) => {
+        this.setState({
+           editClicked: !this.state.editClicked
+        })
+    }
+
+    handleSubmit= (e)=>{
+        e.preventDefault()
+
+        this.props.updateMovie(this.state.movie, this.props.match.params.id, () => {
+            this.props.history.push('/')
+        })
+
+       
     }
 
     handleChange = (e) => {
-        console.log(e.target.value)
         const movie = {
-            ...this.state.movie,
             [e.target.name] : e.target.value
         }
-        console.log(movie)
-        this.setState({movie})
-        console.log(this.props.updateMovie());
-        
-        this.props.updateMovie(movie ,this.props.match.params.id)
+        this.setState({
+            movie: {...this.state.movie, ...movie}
+        })
     }
 
     render(){
-       console.log(this.state)
+        
         return (
         <div>
             <Header/>
@@ -46,27 +62,56 @@ class Movie extends Component {
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="card" style={{width: "18rem"}} align="center">
-                            <img className="card-img-top" src={this.props.movie.picture_url}/>
+                            {this.state.editClicked ? 
+                            <>
+                            <img className="card-img-top img-thumbnail" src={this.props.movie.picture_url}/>
+                            </>
+                            : null }
                             <div className="card-body">
-                                {!this.state.editingTitle ? 
-                                <>
-                                    <h5 className="card-title"
-                                        onClick={() => this.setState((state) => ({...state, editingTitle: !state.editingTitle}))}>
-                                    {this.state.movie.title}</h5>
+                               {this.state.editClicked ?
+                               <>
+                                <h3 className="card-text">{this.props.movie.title}</h3>
+                                <h6 className="card-text">{this.props.movie.director}</h6>
+                                <p className="card-text">{this.props.movie.years}</p>
+                                <p className="card-text">{this.props.movie.rating}</p>
                                 </>
                                 : 
                                 <>
-                                    <input type='text' name='title' value={this.state.movie.title} 
-                                        onChange={this.handleChange}/>
-                                    <button onClick={() => this.setState((state) => ({...state, editingTitle: !state.editingTitle}))}>Edit</button>
+                                    <form id="post-form" onSubmit={this.handleSubmit}>
+                                        <div className="form-group">
+                                        <label>Title: {this.props.movie.title}</label>
+                                        <input name ="title" type="text" className="form-control" value={this.state.movie.title} onChange={this.handleChange}></input>
+                                        </div>
+                                        <div className="form-group">
+                                        <label>Director: {this.props.movie.director}</label>
+                                        <input name ="director" type="text" className="form-control" value={this.state.movie.director} onChange={this.handleChange}></input>
+                                        </div>
+                                        <div className="form-group">
+                                        <label>Release Date: {this.props.movie.years}</label>
+                                        <input name ="years" type="text" className="form-control" value={this.state.movie.years} onChange={this.handleChange}></input>
+                                        </div>
+                                        <div className="form-group">
+                                        <label>Movie Rating : {this.props.movie.rating}</label>
+                                        <select name ='rating' className="form-control" value={this.state.movie.rating} onChange={this.handleChange}>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                        </div>
+                                        <div className="form-group">
+                                        <label>Picture URL: {this.props.movie.picture_url}</label>
+                                        <input name ="picture_url" type="text" className="form-control" value={this.state.movie.picture_url} onChange={this.handleChange}></input>
+                                        </div>
+
+                                        <button type="submit" className="btn btn-dark btn-large">Update Movie</button>
+                                    </form>
                                 </>
-                                }
-                        
-                                <p className="card-text">{this.props.movie.director}</p>
-                                <p className="card-text">{this.props.movie.years}</p>
-                                <p className="card-text">{this.props.movie.rating}</p>
+                               }
                             </div>
                             <div className="card-body">
+                                <button className='btn btn-dark' onClick={this.clicked} style={{marginBottom:"5px"}}>Edit Movie</button>
                                 <Link to='/'><button className="btn btn-dark">Go back to Movies</button></Link>
                             </div>
                         </div>

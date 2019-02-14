@@ -21,13 +21,13 @@ class MovieList extends Component {
               <div className ="row justify-content-center">
                 {this.props.movies.map((ele)=>{
                   return  (
-                  <div className="col col-md-4 d-flex" style={{padding:"10px"}}>
-                    <div className="card" style={{width: "250px"}}>
-                    <img className="card-img-top" src={ele.picture_url} alt="Responsive image" style={{}}/>
-                      <div className="card-body">
+                  <div className="col col-lg-4 d-flex" style={{padding:"10px"}}>
+                    <div className="card">
+                    <img className="card-img-top img-thumbnail" style={{width: "100%",height:"40%"}} src={ele.picture_url} alt="Responsive image"/>
+                      <div className="card-body" style={{paddingBottom:"5px"}}>
                           <h5 className="card-title">{ele.title}</h5>
                           <p className="card-text">Director:{ele.director}</p>
-                          <p className="card-text">Release Year:{ele.years}</p>
+                          <p className="card-text">year released: {ele.years}</p>
                           <p className="card-text">{ele.rating}</p>
                           <Link to = {`/${ele.id}`}><button className="btn btn-dark" style={{marginRight:"30px",marginBottom:"5px"}}>View Movie</button></Link>
                           <button className="btn btn-dark" onClick={()=>{
