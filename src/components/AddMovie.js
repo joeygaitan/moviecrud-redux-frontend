@@ -6,12 +6,15 @@ import { Link } from 'react-router-dom'
 import Header from './Header';
 
 class AddMovie extends Component{
-  constructor(props){
-    super(props);
+constructor(props){
+  super(props)
 
-    this.state = {
-      header: "",
-      desc: ""
+  this.state = {
+    title: "",
+    director: "",
+    years: 1900,
+    rating: 0,
+    picture_url: ""
   }
 }
 
@@ -23,7 +26,7 @@ change = (event) =>{
 
 onSubmit = (event) => {
   event.preventDefault();
-  this.props.add(this.state)
+  this.props.addMovie(this.state)
 
   this.props.history.push('/')
 }
@@ -35,25 +38,39 @@ onSubmit = (event) => {
         <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <div className="card" style={{width: "18rem"}} align="center">
-                            <img className="card-img-top" src={this.props.movie.picture_url}/>
-                            <div className="card-body">                                <>
-                                    <input type='text' name='title' value={this.state.movie.title} 
-                                        onChange={this.handleChange}/>
-                                    <button onClick={() => this.setState((state) => ({...state, editingTitle: !state.editingTitle}))}>Edit</button>
-                                }
-                        
-                                <p className="card-text">{this.props.movie.director}</p>
-                                <p className="card-text">{this.props.movie.years}</p>
-                                <p className="card-text">{this.props.movie.rating}</p>
+                    <form id="post-form" onSubmit={this.onSubmit}>
+                            <div className="form-group">
+                                <label>Title</label>
+                                <input name ="title" type="text" className="form-control" value={this.state.title} onChange={this.change}></input>
                             </div>
-                            <div className="card-body">
-                                <Link to='/'><button className="btn btn-dark">Go back to Movies</button></Link>
+                            <div className="form-group">
+                            <label>Director</label>
+                                <input name ="director" type="text" className="form-control" value={this.state.director} onChange={this.change}></input>
                             </div>
-                        </div>
+                            <div className="form-group">
+                            <label>Year</label>
+                                <input name ="years" type="number" className="form-control" value={this.state.years} onChange={this.change}></input>
+                            </div>
+                            <div className="form-group">
+                            <label>Rating</label>
+                            <select name ='rating' class="form-control" value={this.state.rating} onChange={this.change}>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            </div>
+                            <div className="form-group">
+                            <label>Picture URL</label>
+                                <input name ="picture_url" type="text" className="form-control" value={this.state.picture_url} onChange={this.change}></input>
+                            </div>
+                            <button type="submit" className="btn btn-dark btn-large">Create New Movie Post</button>
+                            <Link to='/'><button className="btn btn-dark btn-large" style={{marginLeft: "20px"}}> Cancel</button></Link>
+                        </form>
                     </div>
                 </div>
-        </div>  
+        </div>
       </>
     );
   }
