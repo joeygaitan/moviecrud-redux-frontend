@@ -3,7 +3,7 @@ export const GET_MOVIES = 'GET_MOVIES'
 
 export const getMovies = () => {
     return (dispatch) => {
-        axios.get(`http://localhost:3004/movies`)
+        axios.get(`REACT_APP_API_URL/movies`)
         .then(res=>{
             dispatch({
                 type: GET_MOVIES,
@@ -18,7 +18,7 @@ export const getMovies = () => {
 
 export const removeMovie = (id) => {
     return (dispatch) => {
-        axios.delete(`http://localhost:3004/movies/${id}`)
+        axios.delete(`REACT_APP_API_URL/movies/${id}`)
         .then(res=>{
             dispatch(getMovies())
         })
@@ -28,7 +28,7 @@ export const removeMovie = (id) => {
 
 export const getMovie = (id) =>{
     return (dispatch) => {
-        axios.get(`http://localhost:3004/movies/${id}`)
+        axios.get(`REACT_APP_API_URL/movies/${id}`)
         .then(res=>{
             dispatch({
                 type: 'GET_MOVIE',
@@ -43,7 +43,7 @@ export const getMovie = (id) =>{
 
 export const updateMovie = (body, id, fn) => {
     return (dispatch) => {
-        axios.put(`http://localhost:3004/movies/${id}`, body)
+        axios.put(`REACT_APP_API_URL/movies/${id}`, body)
         .then(res=>{
             dispatch(getMovies())
             fn()
@@ -56,7 +56,7 @@ export const updateMovie = (body, id, fn) => {
 
 export const addMovie = (body)=>{
     return (dispatch) => {
-        axios.post(`http://localhost:3004/movies/`, body)
+        axios.post(`REACT_APP_API_URL/movies/`, body)
         .then(res=>{
             dispatch(getMovies())
         })

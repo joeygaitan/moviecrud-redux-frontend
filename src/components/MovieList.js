@@ -25,11 +25,8 @@ class MovieList extends Component {
                     <div className="card">
                     <img className="card-img-top img-thumbnail" style={{width: "100%",height:"40%"}} src={ele.picture_url} alt="Responsive image"/>
                       <div className="card-body" style={{paddingBottom:"5px"}}>
-                          <h5 className="card-title">{ele.title}</h5>
-                          <p className="card-text">Director:{ele.director}</p>
-                          <p className="card-text">year released: {ele.years}</p>
-                          <p className="card-text">{ele.rating}</p>
-                          <Link to = {`/${ele.id}`}><button className="btn btn-dark" style={{marginRight:"30px",marginBottom:"5px"}}>View Movie</button></Link>
+                          <h2 className="card-title">{ele.title}</h2>
+                          <Link to = {`/${ele.id}`}><button className="btn btn-dark" style={{border:"-20px", marginRight:"30px",marginBottom:"5px"}}>View Movie</button></Link>
                           <button className="btn btn-dark" onClick={()=>{
                             this.removeMovie(ele.id)
                           }}>delete</button>
