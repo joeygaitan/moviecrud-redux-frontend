@@ -21,7 +21,7 @@ class MovieList extends Component {
               <div className ="row justify-content-center">
                 {this.props.movies.map((ele)=>{
                   return  (
-                  <div className="col col-lg-4 d-flex" style={{padding:"10px"}}>
+                  <div className="col-12 col-md-6 col-lg-4 d-flex" style={{padding:"10px"}}>
                     <div className="card">
                     <img className="card-img-top img-thumbnail" style={{width: "100%",height:"40%"}} src={ele.picture_url} alt="Responsive image"/>
                       <div className="card-body" style={{paddingBottom:"5px"}}>

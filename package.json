@@ -2,7 +2,7 @@
   "name": "moviecrud-redux-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://joeygaitan.github.io/moviecrud-redux-frontend/",
+  "homepage": "https://joeygaitan.github.io/moviecrud-redux-frontend/",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
@@ -17,10 +17,10 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=production react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "predeploy":"npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
@@ -32,5 +32,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "terser": "^3.14.1"
+  }
 }
