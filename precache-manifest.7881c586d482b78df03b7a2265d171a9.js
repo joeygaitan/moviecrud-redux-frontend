@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "b3480c905a35b18a68cc",
-    "url": "/moviecrud-redux-frontend/static/js/main.b3480c90.chunk.js"
+    "revision": "89e343562e8ac4a0b1c9",
+    "url": "/moviecrud-redux-frontend/static/js/main.89e34356.chunk.js"
   },
   {
     "revision": "acdd1010c558df52ce50",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/moviecrud-redux-frontend/static/js/runtime~main.1db01b05.js"
   },
   {
-    "revision": "216de45028fee4150cebc308eb54dd05",
+    "revision": "01051165c7f790262f98fccb05e2b972",
     "url": "/moviecrud-redux-frontend/index.html"
   }
 ];

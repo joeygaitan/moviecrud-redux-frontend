@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/moviecrud-redux-frontend/precache-manifest.33e502dd6f15e05ac897ebae732836f2.js"
+  "/moviecrud-redux-frontend/precache-manifest.7881c586d482b78df03b7a2265d171a9.js"
 );
 
 workbox.clientsClaim();
