@@ -22,8 +22,6 @@ class Movie extends Component {
 
     static getDerivedStateFromProps = (props, state)=>{
         if(!state.movie.hasOwnProperty('title')){
-        console.log("I am in here",props);
-
             return {...state, movie : props.movie}
         }
     }

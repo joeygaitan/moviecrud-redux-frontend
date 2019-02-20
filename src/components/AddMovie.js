@@ -35,7 +35,7 @@ onSubmit = (event) => {
     return(
       <>
         <Header/>
-        <div className="container">
+        <div className="container ">
                 <div className="row">
                     <div className="col-lg-12">
                     <form id="post-form" onSubmit={this.onSubmit}>
@@ -53,7 +53,7 @@ onSubmit = (event) => {
                             </div>
                             <div className="form-group">
                             <label>Rating</label>
-                            <select name ='rating' class="form-control" value={this.state.rating} onChange={this.change}>
+                            <select name ='rating' className="form-control" value={this.state.rating} onChange={this.change}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
